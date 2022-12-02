@@ -27,16 +27,12 @@ score = 0
 for game in data:
     preferred_outcome = points[game[1]]
     score += preferred_outcome
-    print(game, preferred_outcome)
 
     if preferred_outcome == 0:
-        print(loss[game[0]])
         score += loss[game[0]]
     elif preferred_outcome == 3:
-        print(draw[game[0]])
         score += draw[game[0]]
     else:
-        print(win[game[0]])
         score += win[game[0]]
 
 print(score)
