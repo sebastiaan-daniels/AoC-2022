@@ -43,23 +43,6 @@ for cor_y, row in enumerate(data):
 print(visible)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # part two
 with open('input08.txt','r') as f:
     data = f.read().split('\n')[:-1]
