@@ -30,16 +30,16 @@ for cor_y, row in enumerate(data):
                 trees_above.append(item[cor_x])
             elif row_index > cor_y:
                 trees_below.append(item[cor_x])
-        
-        if all([value > tree for tree in trees_left]):
+
+        if all(value > tree for tree in trees_left):
             visible += 1
-        elif all([value > tree for tree in trees_right]):
+        elif all(value > tree for tree in trees_right):
             visible += 1
-        elif all([value > tree for tree in trees_above]):
+        elif all(value > tree for tree in trees_above):
             visible += 1
-        elif all([value > tree for tree in trees_below]):
+        elif all(value > tree for tree in trees_below):
             visible += 1
-        
+
 print(visible)
 
 
@@ -55,7 +55,6 @@ edges = [0, len(data) - 1] # if either x or y is one of these, tree is on edge
 scores = []
 for cor_y, row in enumerate(data):
     for cor_x, value in enumerate(row):
-        view_distances = []
         trees_left = []
         trees_right = []
         trees_above = []
@@ -75,26 +74,23 @@ for cor_y, row in enumerate(data):
                 trees_above.append(item[cor_x])
             elif row_index > cor_y:
                 trees_below.append(item[cor_x])
-        
+
         # for counting scores trees on the left, and trees above need to be reversed. (since we look left and up)
         trees_left, trees_above = trees_left[::-1], trees_above[::-1]
-           
+
         # very redundant but copy pasting is quicker and it's a challenge not a beauty contest
         c_vd = 0
         for item in trees_left:
             
             if item < value: c_vd += 1
-            elif item >= value:
-                c_vd += 1
+            if item >= value:
                 break
-        view_distances.append(c_vd)
-
+        view_distances = [c_vd]
         c_vd = 0
         for item in trees_right:
             
             if item < value: c_vd += 1
-            elif item >= value:
-                c_vd += 1
+            if item >= value:
                 break
         view_distances.append(c_vd)
 
@@ -102,8 +98,7 @@ for cor_y, row in enumerate(data):
         for item in trees_above:
             
             if item < value: c_vd += 1
-            elif item >= value:
-                c_vd += 1
+            if item >= value:
                 break
         view_distances.append(c_vd)
 
@@ -111,8 +106,7 @@ for cor_y, row in enumerate(data):
         for item in trees_below:
             
             if item < value: c_vd += 1
-            elif item >= value:
-                c_vd += 1
+            if item >= value:
                 break
         view_distances.append(c_vd)
         scenic_score = 1
